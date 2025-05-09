@@ -22,6 +22,8 @@ func main() {
 			pemilik()
 		case 2:
 			investor()
+		default :
+			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 		}
 	}
 }
@@ -43,6 +45,21 @@ func pemilik() {
 	fmt.Println("1. Membuat Proyek")          //nanti nyambung sama procedure buatProyek
 	fmt.Println("2. Melihat Progress Proyek") //nyambung sama procedure progressProyek
 	fmt.Println("===========================")
+	fmt.Println("Pilih (1/2)?")
+	fmt.Scan(&pilih)
+
+	for pilih <= 2 {
+		switch pilih {
+		case 1:
+			buatProyek()
+		case 2:
+			progressProyek()
+		default:
+			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
+
+		}
+	}
+	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
 }
 
