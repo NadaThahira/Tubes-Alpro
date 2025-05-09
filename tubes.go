@@ -11,7 +11,7 @@ type Penggalangan struct {
 
 type Proyek [NMAX]Penggalangan
 
-var insert Proyek
+//var insert Proyek
 var jumlah int
 
 func main() {
@@ -58,6 +58,7 @@ func menu() {
 //---------------------------------------------------------------------------------------------------------------------------------
 func pemilik() {
 	var pilih int
+	var add Proyek
 	fmt.Println("===========================")
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
@@ -78,11 +79,11 @@ func pemilik() {
 		case 0:
 			Dashboard()
 		case 1:
-			buatProyek()
+			buatProyek(&add, pilih)
 		case 2:
-			progressProyek()
+			progressProyek(&add, pilih)
 		case 3:
-			ubahProyek()
+			ubahProyek(&add, pilih)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
@@ -92,8 +93,7 @@ func pemilik() {
 
 }
 
-func buatProyek() {
-	var pilih int
+func buatProyek(insert *Proyek, pilih int) {
 	var n int
 	fmt.Println("===========================")
 	fmt.Println("           Proyek")
@@ -145,8 +145,7 @@ func buatProyek() {
 
 }
 
-func progressProyek() {
-	var pilih int
+func progressProyek(insert *Proyek, pilih int) {
 	if jumlah == 0 {
 		fmt.Println("Maaf, Belum ada proyek yang tersedia")
 	}
@@ -182,8 +181,7 @@ func progressProyek() {
 
 }
 
-func ubahProyek() {
-	var pilih int
+func ubahProyek(insert *Proyek, pilih int) {
 	fmt.Println("===========================")
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
@@ -209,11 +207,42 @@ func ubahProyek() {
 
 }
 
-func hapusProyek() {
+func hapusProyek(insert *Proyek, pilih int) {
 
 }
 
-func editProyek() {
+func editProyek(insert *Proyek, pilih int) {
+	var baru, targetBaru int
+	var namaBaru, deskripsiBaru string
+	fmt.Println("Mau edit proyek ke berapa?")
+	fmt.Scan(&pilih)
+	if pilih < 1 || pilih > jumlah {
+		fmt.Println("Pilihlah sesuai nomor yang tertera")
+	}
+	fmt.Println("Mau edit nomor berapa?")
+	fmt.Println("1. Nama Proyek")
+	fmt.Println("2. Deskripsi Proyek")
+	fmt.Println("3. Target Dana Proyek")
+
+	fmt.Scan(&baru)
+	if baru < 1 || baru > jumlah {
+		fmt.Println("Pilihlah sesuai nomor yang tertera")
+	}
+	if baru == 1 {
+		fmt.Scan(&namaBaru)
+		insert[pilih-1].namaProyek = namaBaru
+	} else if baru == 2 {
+		fmt.Scan(&deskripsiBaru)
+		insert[pilih-1].deskripsi = deskripsiBaru
+	} else if baru == 3 {
+		fmt.Scan(&targetBaru)
+		if targetBaru < 1000 {
+			fmt.Println("Dana tidak boleh dibawah seribu, silahkan masukan kembali target dana yang ingin di capai")
+			fmt.Scan(&targetBaru)
+		}
+		insert[pilih-1].targetDana = targetBaru
+
+	}
 
 }
 
@@ -248,12 +277,11 @@ func investor() {
 
 }
 
-func ubahDanaInvestor() {
+func ubahDanaInvestor(insert *Proyek, pilih int) {
 
 }
 
-func tambahDanaInvestor() {
-	var pilih int
+func tambahDanaInvestor(insert *Proyek, pilih int) {
 	var danaInvest int
 
 	if jumlah == 0 {
