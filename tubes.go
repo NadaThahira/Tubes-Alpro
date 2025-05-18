@@ -208,8 +208,44 @@ func ubahProyek(insert *Proyek, pilih int) {
 }
 
 func hapusProyek(insert *Proyek, pilih int) {
+	var namaCari string
+	var i, low, high, mid, pos int
+	var found bool
 
+	fmt.Println("Masukkan nama proyek yang ingin dihapus:")
+	fmt.Scan(&namaCari)
+
+	insertionSortByNama()
+
+	low = 0
+	high = jumlah - 1
+	found = false
+
+	for low <= high && !found {
+		mid = (low + high) / 2
+		if insert[mid].namaProyek == namaCari {
+			found = true
+			pos = mid
+		} else {
+			if insert[mid].namaProyek < namaCari {
+				low = mid + 1
+			} else {
+				high = mid - 1
+			}
+		}
+	}
+
+	if found {
+		for i = pos; i < jumlah-1; i++ {
+			insert[i] = insert[i+1]
+		}
+		jumlah--
+		fmt.Println("Proyek berhasil dihapus.")
+	} else {
+		fmt.Println("Proyek tidak ditemukan.")
+	}
 }
+
 
 func editProyek(insert *Proyek, pilih int) {
 	var baru, targetBaru int
@@ -278,8 +314,37 @@ func investor() {
 }
 
 func ubahDanaInvestor(insert *Proyek, pilih int) {
+	var namaCari string
+	var danaBaru int
+	var ditemukan bool
+	var idx int
 
+	fmt.Println("Masukkan nama proyek yang ingin Anda ubah dananya:")
+	fmt.Scan(&namaCari)
+
+	ditemukan = false
+	idx = 0
+
+	for idx < jumlah && !ditemukan {
+		if insert[idx].namaProyek == namaCari {
+			ditemukan = true
+		} else {
+			idx++
+		}
+	}
+
+	if ditemukan {
+		fmt.Println("Proyek ditemukan: ", insert[idx].namaProyek)
+		fmt.Println("Jumlah dana saat ini: ", insert[idx].jumlahDana)
+		fmt.Println("Masukkan jumlah dana baru:")
+		fmt.Scan(&danaBaru)
+		insert[idx].jumlahDana = danaBaru
+		fmt.Println("Dana berhasil diubah.")
+	} else {
+		fmt.Println("Proyek tidak ditemukan.")
+	}
 }
+
 
 func tambahDanaInvestor(insert *Proyek, pilih int) {
 	var danaInvest int
