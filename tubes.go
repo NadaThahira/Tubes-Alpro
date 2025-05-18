@@ -63,8 +63,8 @@ func pemilik() {
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
 	fmt.Println("0. Kembali ke menu utama")
-	fmt.Println("1. Membuat Proyek")          //nanti nyambung sama procedure buatProyek
-	fmt.Println("2. Melihat Progress Proyek") //nyambung sama procedure progressProyek
+	fmt.Println("1. Membuat Proyek")          
+	fmt.Println("2. Melihat Progress Proyek") 
 	fmt.Println("3. Mengubah Proyek")
 	fmt.Println("===========================")
 	fmt.Println("Pilih (0/1/2)?")
@@ -157,9 +157,8 @@ func progressProyek(insert *Proyek, pilih int) {
 	for i := 0; i < jumlah; i++ {
 		fmt.Printf("%d. %s - %s (target : %d)\n", i+1, insert[i].namaProyek, insert[i].deskripsi, insert[i].targetDana)
 
-		fmt.Println("1. Jumlah Dana : ", insert[i].jumlahDana)         //nanti nyambung sama procedure buatProyek, bingung dibedain atau masih masuk ke tipe buat
-		fmt.Println("2. Jumlah Investor : ", insert[i].jumlahInvestor) //nyambung sama procedure perkembanganProyek, bingung dibedain atau masih masuk ke tipe buat
-	}
+		fmt.Println("1. Jumlah Dana : ", insert[i].jumlahDana)         
+		fmt.Println("2. Jumlah Investor : ", insert[i].jumlahInvestor) 
 	fmt.Println("0. Kembali ke Menu Utama")
 	fmt.Println("===========================")
 
