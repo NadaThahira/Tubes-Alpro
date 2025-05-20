@@ -63,9 +63,10 @@ func pemilik() {
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
 	fmt.Println("0. Kembali ke menu utama")
-	fmt.Println("1. Membuat Proyek")          
-	fmt.Println("2. Melihat Progress Proyek") 
+	fmt.Println("1. Membuat Proyek")
+	fmt.Println("2. Melihat Progress Proyek")
 	fmt.Println("3. Mengubah Proyek")
+	fmt.Println("4. Melihat proyek yang telah mancapai target pendanaan")
 	fmt.Println("===========================")
 	fmt.Println("Pilih (0/1/2)?")
 
@@ -84,6 +85,8 @@ func pemilik() {
 			progressProyek(&add, pilih)
 		case 3:
 			ubahProyek(&add, pilih)
+		case 4:
+			DisplayProjekTercapai(&add)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
@@ -126,24 +129,23 @@ func buatProyek(insert *Proyek, pilih int) {
 	fmt.Println("Terima Kasih, Proyek Berhasil Dibuat") // setelah itu kembali ke menu utama
 	fmt.Println("Tekan 0 untuk kembali ke menu utama")
 	fmt.Println("===========================")
-
-	fmt.Scan(&pilih)
-	if pilih < 1 || pilih > jumlah {
-		fmt.Println("Pilihlah sesuai nomor yang tertera")
-	}
-
-	for pilih == 0 {
-		switch pilih {
-		case 1:
-			Dashboard()
-		default:
-			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
-
-		}
-	}
-	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
-
 }
+
+//fmt.Scan(&pilih)
+// 	//if pilih < 1 || pilih > n {
+// 		fmt.Println("Pilihlah sesuai nomor yang tertera")
+// 	}
+
+// 	if pilih == 0 {
+// 		Dashboard()
+// 	} else {
+// 		fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
+
+// 	}
+
+// 	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
+
+// }
 
 func progressProyek(insert *Proyek, pilih int) {
 	if jumlah == 0 {
@@ -157,27 +159,25 @@ func progressProyek(insert *Proyek, pilih int) {
 	for i := 0; i < jumlah; i++ {
 		fmt.Printf("%d. %s - %s (target : %d)\n", i+1, insert[i].namaProyek, insert[i].deskripsi, insert[i].targetDana)
 
-		fmt.Println("1. Jumlah Dana : ", insert[i].jumlahDana)         
-		fmt.Println("2. Jumlah Investor : ", insert[i].jumlahInvestor) 
-	fmt.Println("0. Kembali ke Menu Utama")
-	fmt.Println("===========================")
+		fmt.Println("1. Jumlah Dana : ", insert[i].jumlahDana)
+		fmt.Println("2. Jumlah Investor : ", insert[i].jumlahInvestor)
+		fmt.Println("0. Kembali ke Menu Utama")
+		fmt.Println("===========================")
 
-	fmt.Scan(&pilih)
-	if pilih < 1 || pilih > jumlah {
-		fmt.Println("Pilihlah sesuai nomor yang tertera")
-	}
+		fmt.Scan(&pilih)
+		if pilih < 1 || pilih > jumlah {
+			fmt.Println("Pilihlah sesuai nomor yang tertera")
+		}
 
-	for pilih == 0 {
-		switch pilih {
-		case 1:
+		if pilih == 0 {
 			Dashboard()
-		default:
+		} else {
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
 		}
-	}
-	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
+		fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
+	}
 }
 
 func ubahProyek(insert *Proyek, pilih int) {
@@ -210,11 +210,12 @@ func hapusProyek(insert *Proyek, pilih int) {
 	var namaCari string
 	var i, low, high, mid, pos int
 	var found bool
+	var add Proyek
 
 	fmt.Println("Masukkan nama proyek yang ingin dihapus:")
 	fmt.Scan(&namaCari)
 
-	insertionSortByNama()
+	insertionSortByNama(&add)
 
 	low = 0
 	high = jumlah - 1
@@ -245,6 +246,21 @@ func hapusProyek(insert *Proyek, pilih int) {
 	}
 }
 
+func insertionSortByNama(insert *Proyek) {
+	var pass, i int
+	pass = 1
+	for pass <= jumlah-1 {
+		i = pass
+		temp := insert[pass]
+		for i > 0 && temp.namaProyek < insert[i-1].namaProyek {
+			insert[i] = insert[i-1]
+			i = i - 1
+		}
+		insert[i] = temp
+		pass = pass + 1
+	}
+
+}
 
 func editProyek(insert *Proyek, pilih int) {
 	var baru, targetBaru int
@@ -280,11 +296,26 @@ func editProyek(insert *Proyek, pilih int) {
 	}
 
 }
+func DisplayProjekTercapai(insert *Proyek) { //gatau mau di panggil dimana dan masih ragu sintaksnya
+	var i int
+	fmt.Println("Berikut adalah projek yang telah mencapai target ppendanaan :")
+
+	for i = 0; i < jumlah; i++ {
+		if insert[i].jumlahDana >= insert[i].targetDana {
+			fmt.Println("Nama Proyek :", insert[i].namaProyek)
+			fmt.Println("Target Dana :", insert[i].targetDana)
+			fmt.Println("Dana Terkumpul :", insert[i].jumlahDana)
+
+		} else {
+			fmt.Println("Maaf untuk saat ini belum ada proyek yang telah mencapai target")
+		}
+	}
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 func investor() {
 	var pilih int
-
+	var add Proyek
 	fmt.Println("===========================")
 	fmt.Println("         Investor")
 	fmt.Println("---------------------------")
@@ -300,9 +331,9 @@ func investor() {
 		case 0:
 			Dashboard()
 		case 1:
-			ubahDanaInvestor()
+			ubahDanaInvestor(&add)
 		case 2:
-			tambahDanaInvestor()
+			tambahDanaInvestor(&add, pilih)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
@@ -312,7 +343,7 @@ func investor() {
 
 }
 
-func ubahDanaInvestor(insert *Proyek, pilih int) {
+func ubahDanaInvestor(insert *Proyek) {
 	var namaCari string
 	var danaBaru int
 	var ditemukan bool
@@ -344,7 +375,6 @@ func ubahDanaInvestor(insert *Proyek, pilih int) {
 	}
 }
 
-
 func tambahDanaInvestor(insert *Proyek, pilih int) {
 	var danaInvest int
 
@@ -370,7 +400,46 @@ func tambahDanaInvestor(insert *Proyek, pilih int) {
 	fmt.Println("Note : masukan dalam bilangan bulat")
 	fmt.Scan(&danaInvest)
 
-	insert[pilih-1].jumlahDana = danaInvest
+	insert[pilih-1].jumlahDana += danaInvest
 	insert[pilih-1].jumlahInvestor++
 
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//tampilan
+func selectionSortByJumDana(insert *Proyek) { //gatau mau di panggil dimana
+	//descending
+	var pass, idx, i int
+
+	pass = 1
+	for pass <= jumlah-1 {
+		idx = pass - 1
+		i = pass
+
+		for i < jumlah {
+			if insert[idx].jumlahDana < insert[i].jumlahDana {
+				idx = i
+			}
+			i++
+		}
+		temp := insert[pass-1]
+		insert[pass-1] = insert[idx]
+		insert[idx] = temp
+	}
+
+}
+func insertionSortByJumInvestor(insert *Proyek) { //gatau mau di panggil dimana
+	var pass, i int
+	var total Penggalangan
+	pass = 1
+	for pass <= total.jumlahInvestor-1 {
+		i = pass
+		temp := insert[pass]
+		for i > 0 && temp.jumlahInvestor < insert[i-1].jumlahInvestor {
+			insert[i] = insert[i-1]
+			i = i - 1
+		}
+		insert[i] = temp
+		pass = pass + 1
+	}
 }
