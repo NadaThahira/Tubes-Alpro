@@ -595,7 +595,7 @@ func selectionSortByJumDana(insert *Proyek) {
 
 func DisplayProjek(insert *Proyek) {
 	var i int
-	fmt.Println("Berikut adalah projek yang telah mencapai target ppendanaan :")
+	fmt.Println("Berikut adalah proyek yang tersedia :")
 
 	for i = 0; i < jumlah; i++ {
 		fmt.Println("Nama Proyek :", insert[i].namaProyek)
@@ -606,7 +606,7 @@ func DisplayProjek(insert *Proyek) {
 }
 func DisplayProjekTercapai(insert *Proyek) {
 	var i int
-	fmt.Println("Berikut adalah projek yang telah mencapai target ppendanaan :")
+	fmt.Println("Berikut adalah proyek yang telah mencapai target ppendanaan :")
 
 	insertionSortByJumInvestor(insert)
 	for i = 0; i < jumlah; i++ {
