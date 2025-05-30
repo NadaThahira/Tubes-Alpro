@@ -364,9 +364,9 @@ func cariProyek(data *Proyek) {
 	for pilih != 0 {
 		switch pilih {
 		case 1:
-			cariProyekByKategori(data)
+			cariProyekByKategori(*data)
 		case 2:
-			cariProyekByNama(data)
+			cariProyekByNama(*data)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
@@ -392,13 +392,13 @@ func cariProyek(data *Proyek) {
 // 		fmt.Scan(&input)
 // 	}
 // }
-func cariProyekByNama(data *Proyek) {
+func cariProyekByNama(data Proyek) {
 	var nama string
 	fmt.Println("---------------------------")
 	fmt.Println("Masukkan nama yang ingin dicari: ")
 	fmt.Println("---------------------------")
 	fmt.Scan(&nama)
-	index := binarySearch(*data, nama)
+	index := binarySearch(data, nama)
 	if index != -1 {
 		fmt.Println("Proyek ditemukan:")
 		fmt.Println("Nama Proyek : ", data[index].namaProyek)
@@ -425,14 +425,14 @@ func binarySearch(insert Proyek, x string) int {
 	return -1
 
 }
-func cariProyekByKategori(data *Proyek) {
+func cariProyekByKategori(data Proyek) {
 	var kategori string
 	fmt.Println("---------------------------")
 	fmt.Println("Masukkan kategori yang ingin dicari: ")
 	fmt.Println("Note: Bila terdapat lebih dari satu kata, penulisan tidak di spasi")
 	fmt.Println("---------------------------")
 	fmt.Scan(&kategori)
-	index := seqSeach(*data, kategori)
+	index := seqSeach(data, kategori)
 	if index != -1 {
 		fmt.Println("Proyek ditemukan:")
 		fmt.Println("Nama Proyek : ", data[index].namaProyek)
