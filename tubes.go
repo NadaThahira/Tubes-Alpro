@@ -394,9 +394,7 @@ func cariProyek(data *Proyek) {
 // }
 func cariProyekByNama(data Proyek) {
 	var nama string
-	fmt.Println("---------------------------")
 	fmt.Println("Masukkan nama yang ingin dicari: ")
-	fmt.Println("---------------------------")
 	fmt.Scan(&nama)
 	index := binarySearch(data, nama)
 	if index != -1 {
@@ -427,10 +425,8 @@ func binarySearch(insert Proyek, x string) int {
 }
 func cariProyekByKategori(data Proyek) {
 	var kategori string
-	fmt.Println("---------------------------")
 	fmt.Println("Masukkan kategori yang ingin dicari: ")
 	fmt.Println("Note: Bila terdapat lebih dari satu kata, penulisan tidak di spasi")
-	fmt.Println("---------------------------")
 	fmt.Scan(&kategori)
 	index := seqSeach(data, kategori)
 	if index != -1 {
@@ -454,11 +450,12 @@ func seqSeach(insert Proyek, x string) int {
 func investor(data *Proyek) {
 	var pilih int
 
-	cariProyek(data)
-
 	fmt.Println("===========================")
 	fmt.Println("          Investor")
 	fmt.Println("---------------------------")
+	fmt.Println()
+	cariProyek(data)
+	fmt.Println()
 	fmt.Println("---------------------------")
 	fmt.Println("0. Kembali ke menu Utama")
 	fmt.Println("1. Mengubah Dana yang di investasikan")
