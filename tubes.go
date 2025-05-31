@@ -68,7 +68,6 @@ func menu() {
 // F.S. : User dapat membuat, mencari, mengubah, atau melihat proyek berdasarkan pilihannya
 func pemilik(data *Proyek) {
 	var pilih int
-	var add Proyek
 	fmt.Println("===========================")
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
@@ -78,7 +77,7 @@ func pemilik(data *Proyek) {
 	fmt.Println("3. Mengubah Proyek")
 	fmt.Println("4. Melihat proyek yang telah mancapai target pendanaan")
 	fmt.Println("===========================")
-	fmt.Println("Pilih (0/1/2)?")
+	fmt.Println("Pilih (0/1/2/3/4)?")
 
 	fmt.Scan(&pilih)
 	if pilih < 0 || pilih > 4 {
@@ -87,7 +86,6 @@ func pemilik(data *Proyek) {
 	// fmt.Print(pilih)
 
 	for pilih != 0 {
-		fmt.Print("aa")
 		switch pilih {
 		// case 0:
 		// 	Dashboard()
@@ -96,9 +94,9 @@ func pemilik(data *Proyek) {
 		case 2:
 			progressProyek(data)
 		case 3:
-			ubahProyek(data, pilih)
+			ubahProyek(data)
 		case 4:
-			DisplayProjekTercapai(&add)
+			DisplayProjekTercapai(data)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
@@ -112,7 +110,7 @@ func pemilik(data *Proyek) {
 		fmt.Println("3. Mengubah Proyek")
 		fmt.Println("4. Melihat proyek yang telah mancapai target pendanaan")
 		fmt.Println("===========================")
-		fmt.Println("Pilih (0/1/2)?")
+		fmt.Println("Pilih (0/1/2/3/4)?")
 
 		fmt.Scan(&pilih)
 		if pilih < 0 || pilih > 4 {
@@ -218,9 +216,8 @@ func progressProyek(insert *Proyek) {
 
 // I.S. : User memilih untuk mengubah atau menghapus proyek
 // F.S. : Proyek diubah atau dihapus berdasarkan pilihan
-func ubahProyek(insert *Proyek, pilih int) {
-	var n int
-
+func ubahProyek(insert *Proyek) {
+	var pilih int
 	fmt.Println("===========================")
 	fmt.Println("      Pemilik Proyek")
 	fmt.Println("---------------------------")
@@ -228,18 +225,33 @@ func ubahProyek(insert *Proyek, pilih int) {
 	fmt.Println("1. Menghapus Proyek")
 	fmt.Println("2. Mengedit Proyek")
 	fmt.Println("===========================")
+	fmt.Scan(&pilih)
 
-	for pilih == 0 {
+	for pilih >= 0 {
 		switch pilih {
 		case 0:
 			Dashboard()
 		case 1:
-			hapusProyek(insert, n)
+			hapusProyek(insert)
 		case 2:
-			editProyek(insert, n)
+			editProyek(insert)
 		default:
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
+		}
+
+		fmt.Println("===========================")
+		fmt.Println("      Pemilik Proyek")
+		fmt.Println("---------------------------")
+		fmt.Println("0. Kembali ke Menu login")
+		fmt.Println("1. Menghapus Proyek")
+		fmt.Println("2. Mengedit Proyek")
+		fmt.Println("===========================")
+		fmt.Scan(&pilih)
+
+		fmt.Scan(&pilih)
+		if pilih < 1 || pilih > 3 {
+			fmt.Println("Pilihlah sesuai nomor yang tertera")
 		}
 	}
 	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
@@ -248,7 +260,7 @@ func ubahProyek(insert *Proyek, pilih int) {
 
 // I.S. : User memilih untuk menghapus proyek
 // F.S. : Proyek dengan nama tertentu dihapus dari array jika ditemukan
-func hapusProyek(insert *Proyek, pilih int) {
+func hapusProyek(insert *Proyek) {
 	var namaCari string
 	var i, low, high, mid, pos int
 	var found bool
@@ -308,7 +320,8 @@ func insertionSortByNama(insert *Proyek) {
 
 // I.S. : User memilih proyek dan bagian mana yang ingin diubah
 // F.S. : Nilai atribut proyek berubah sesuai input user
-func editProyek(insert *Proyek, pilih int) {
+func editProyek(insert *Proyek) {
+	var pilih int
 	var baru, targetBaru int
 	var namaBaru, deskripsiBaru string
 
@@ -330,12 +343,15 @@ func editProyek(insert *Proyek, pilih int) {
 		fmt.Println("Pilihlah sesuai nomor yang tertera")
 	}
 	if baru == 1 {
+		fmt.Println("Tulislah nama baru proyek anda")
 		fmt.Scan(&namaBaru)
 		insert[pilih-1].namaProyek = namaBaru
 	} else if baru == 2 {
+		fmt.Println("Tulislah deskripsi baru proyek anda")
 		fmt.Scan(&deskripsiBaru)
 		insert[pilih-1].deskripsi = deskripsiBaru
 	} else if baru == 3 {
+		fmt.Println("Tulislah Target baru proyek anda")
 		fmt.Scan(&targetBaru)
 		if targetBaru < 1000 {
 			fmt.Println("Dana tidak boleh dibawah seribu, silahkan masukan kembali target dana yang ingin di capai")
