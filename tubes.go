@@ -48,7 +48,7 @@ func Dashboard() {
 		fmt.Scan(&pilih1)
 	}
 	fmt.Print("Terimakasih telah menggunakan aplikasi ini")
-	fmt.Println() // masih eror
+	fmt.Println()
 }
 
 // I.S. : Fungsi dipanggil dari Dashboard
