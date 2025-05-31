@@ -14,10 +14,14 @@ type Proyek [NMAX]Penggalangan
 //var insert Proyek
 var jumlah int
 
+// I.S. : Program dijalankan
+// F.S. : Menampilkan menu dashboard
 func main() {
 	Dashboard()
 }
 
+// I.S. : Pengguna menjalankan program
+// F.S. : Menampilkan menu login dan menavigasi pengguna berdasarkan pilihan
 func Dashboard() {
 	var pilih1 int
 	var data Proyek
@@ -47,6 +51,8 @@ func Dashboard() {
 	fmt.Print("Terimakasih telah menggunakan aplikasi ini") // masih eror
 }
 
+// I.S. : Fungsi dipanggil dari Dashboard
+// F.S. : Menampilkan pilihan menu login
 func menu() {
 	fmt.Println("===========================")
 	fmt.Println("           LOGIN")
@@ -58,6 +64,8 @@ func menu() {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
+// I.S. : User sebagai pemilik proyek memilih masuk ke menu pemilik proyek
+// F.S. : User dapat membuat, mencari, mengubah, atau melihat proyek berdasarkan pilihannya
 func pemilik(data *Proyek) {
 	var pilih int
 	var add Proyek
@@ -114,6 +122,8 @@ func pemilik(data *Proyek) {
 
 }
 
+// I.S. : User memilih untuk menambahkan proyek baru
+// F.S. : Proyek baru berhasil ditambahkan ke dalam array insert
 func buatProyek(insert *Proyek) {
 	var n int
 	fmt.Println("===========================")
@@ -151,6 +161,8 @@ func buatProyek(insert *Proyek) {
 	fmt.Println()
 }
 
+// I.S. : User ingin melihat progress proyek berdasarkan kategori tertentu
+// F.S. : Menampilkan proyek yang telah diurutkan sesuai pilihan user
 func progressProyek(insert *Proyek) {
 	var pilih int
 	if jumlah == 0 {
@@ -204,6 +216,8 @@ func progressProyek(insert *Proyek) {
 	//}
 }
 
+// I.S. : User memilih untuk mengubah atau menghapus proyek
+// F.S. : Proyek diubah atau dihapus berdasarkan pilihan
 func ubahProyek(insert *Proyek, pilih int) {
 	var n int
 
@@ -232,6 +246,8 @@ func ubahProyek(insert *Proyek, pilih int) {
 
 }
 
+// I.S. : User memilih untuk menghapus proyek
+// F.S. : Proyek dengan nama tertentu dihapus dari array jika ditemukan
 func hapusProyek(insert *Proyek, pilih int) {
 	var namaCari string
 	var i, low, high, mid, pos int
@@ -271,6 +287,8 @@ func hapusProyek(insert *Proyek, pilih int) {
 	}
 }
 
+// I.S. : Data proyek belum terurut berdasarkan nama
+// F.S. : Data proyek terurut berdasarkan nama secara ascending
 func insertionSortByNama(insert *Proyek) {
 	var pass, i int
 	pass = 1
@@ -288,6 +306,8 @@ func insertionSortByNama(insert *Proyek) {
 
 }
 
+// I.S. : User memilih proyek dan bagian mana yang ingin diubah
+// F.S. : Nilai atribut proyek berubah sesuai input user
 func editProyek(insert *Proyek, pilih int) {
 	var baru, targetBaru int
 	var namaBaru, deskripsiBaru string
@@ -326,6 +346,9 @@ func editProyek(insert *Proyek, pilih int) {
 	}
 
 }
+
+// I.S. : Data proyek belum terurut berdasarkan jumlah investor
+// F.S. : Data proyek terurut berdasarkan jumlah investor secara ascending
 func insertionSortByJumInvestor(insert *Proyek) {
 	var pass, i int
 	var total Penggalangan
@@ -343,6 +366,9 @@ func insertionSortByJumInvestor(insert *Proyek) {
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// I.S. : User ingin mencari proyek berdasarkan nama atau kategori
+// F.S. : Menampilkan proyek yang sesuai dengan kategori atau nama jika ditemukan
 func cariProyek(data *Proyek) {
 	var pilih int
 
@@ -392,6 +418,9 @@ func cariProyek(data *Proyek) {
 // 		fmt.Scan(&input)
 // 	}
 // }
+
+// I.S. : User memasukkan nama proyek yang ingin dicari
+// F.S. : Menampilkan informasi proyek jika ditemukan, atau notifikasi jika tidak ditemukan
 func cariProyekByNama(data Proyek) {
 	var nama string
 	fmt.Println("Masukkan nama yang ingin dicari: ")
@@ -407,6 +436,8 @@ func cariProyekByNama(data Proyek) {
 	}
 }
 
+// I.S. : Data proyek belum dicari
+// F.S. : Mengembalikan indeks dari proyek yang dicari jika ditemukan, -1 jika tidak
 func binarySearch(insert Proyek, x string) int {
 	insertionSortByNama(&insert)
 	low, high := 0, len(insert)-1
@@ -423,6 +454,9 @@ func binarySearch(insert Proyek, x string) int {
 	return -1
 
 }
+
+// I.S. : User memasukkan kategori yang ingin dicari
+// F.S. : Menampilkan proyek dengan kategori tersebut jika ditemukan
 func cariProyekByKategori(data Proyek) {
 	var kategori string
 	fmt.Println("Masukkan kategori yang ingin dicari: ")
@@ -438,6 +472,9 @@ func cariProyekByKategori(data Proyek) {
 		fmt.Println("Proyek dengan kategori tersebut tidak ditemukan.")
 	}
 }
+
+// I.S. : Pencarian belum dilakukan
+// F.S. : Mengembalikan indeks proyek dengan kategori yang dicari, -1 jika tidak ditemukan
 func seqSeach(insert Proyek, x string) int {
 	for i := 0; i < jumlah; i++ {
 		if insert[i].kategori == x {
@@ -447,6 +484,8 @@ func seqSeach(insert Proyek, x string) int {
 	return -1
 }
 
+// I.S. : User memilih login sebagai investor
+// F.S. : Menampilkan proyek dan memberikan opsi untuk menambah atau mengubah dana
 func investor(data *Proyek) {
 	var pilih int
 
@@ -488,6 +527,8 @@ func investor(data *Proyek) {
 	}
 }
 
+// I.S. : Investor ingin mengubah jumlah dana pada proyek tertentu
+// F.S. : Dana proyek berubah sesuai input user jika proyek ditemukan
 func ubahDanaInvestor(insert *Proyek) {
 	var namaCari string
 	var danaBaru int
@@ -532,6 +573,8 @@ func ubahDanaInvestor(insert *Proyek) {
 	}
 }
 
+// I.S. : Investor memilih proyek dan ingin menambah dana
+// F.S. : Jumlah dana dan jumlah investor proyek bertambah
 func tambahDanaInvestor(insert *Proyek, pilih int) {
 	var danaInvest int
 
@@ -565,6 +608,8 @@ func tambahDanaInvestor(insert *Proyek, pilih int) {
 
 }
 
+// I.S. : Data proyek belum diurutkan berdasarkan jumlah dana
+// F.S. : Data proyek terurut secara descending berdasarkan jumlah dana
 func selectionSortByJumDana(insert *Proyek) {
 	//descending
 	var pass, idx, i int
@@ -590,6 +635,8 @@ func selectionSortByJumDana(insert *Proyek) {
 //---------------------------------------------------------------------------------------------------------------------------------
 //tampilan
 
+// I.S. : Dipanggil untuk menampilkan semua proyek
+// F.S. : Menampilkan informasi proyek satu per satu
 func DisplayProjek(insert *Proyek) {
 	var i int
 	fmt.Println("Berikut adalah proyek yang tersedia :")
@@ -601,6 +648,9 @@ func DisplayProjek(insert *Proyek) {
 	}
 
 }
+
+// I.S. : Dipanggil untuk menampilkan proyek yang mencapai target pendanaan
+// F.S. : Menampilkan proyek-proyek yang telah mencapai target
 func DisplayProjekTercapai(insert *Proyek) {
 	var i int
 	fmt.Println("Berikut adalah proyek yang telah mencapai target ppendanaan :")
