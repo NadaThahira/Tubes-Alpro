@@ -192,29 +192,6 @@ func progressProyek(insert *Proyek) {
 	} else {
 		selectionSortByJumDana(insert)
 	}
-
-	// for i := 0; i < jumlah; i++ {
-	// 	fmt.Printf("%d. %s - %s (target : %d)\n", i+1, insert[i].namaProyek, insert[i].deskripsi, insert[i].targetDana)
-
-	// 	fmt.Println("1. Jumlah Dana : ", insert[i].jumlahDana)
-	// 	fmt.Println("2. Jumlah Investor : ", insert[i].jumlahInvestor)
-	// 	fmt.Println("0. Kembali ke Menu Utama")
-	// 	fmt.Println("===========================")
-
-	// fmt.Scan(&pilih)
-	// if pilih < 1 || pilih > jumlah {
-	// 	fmt.Println("Pilihlah sesuai nomor yang tertera")
-	// }
-
-	// if pilih == 0 {
-	// 	Dashboard()
-	// } else {
-	// 	fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
-
-	// }
-	// fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
-
-	//}
 }
 
 func ubahProyek(insert *Proyek) {
@@ -368,30 +345,6 @@ func editProyek(insert *Proyek) {
 	}
 }
 
-// if baru < 1 || baru > jumlah {
-// 	fmt.Println("Pilihlah sesuai nomor yang tertera")
-// }
-// if baru == 1 {
-// 	fmt.Println("Tulislah nama baru proyek anda")
-// 	fmt.Scan(&namaBaru)
-// 	insert[pilih-1].namaProyek = namaBaru
-// } else if baru == 2 {
-// 	fmt.Println("Tulislah deskripsi baru proyek anda")
-// 	fmt.Scan(&deskripsiBaru)
-// 	insert[pilih-1].deskripsi = deskripsiBaru
-// } else if baru == 3 {
-// 	fmt.Println("Tulislah Target baru proyek anda")
-// 	fmt.Scan(&targetBaru)
-// 	if targetBaru < 1000 {
-// 		fmt.Println("Dana tidak boleh dibawah seribu, silahkan masukan kembali target dana yang ingin di capai")
-// 		fmt.Scan(&targetBaru)
-// 	}
-// 	insert[pilih-1].targetDana = targetBaru
-
-// }
-
-//}
-
 func insertionSortByJumInvestor(insert *Proyek) {
 	// I.S. : Data proyek belum terurut berdasarkan jumlah investor
 	// F.S. : Data proyek terurut berdasarkan jumlah investor secara ascending
@@ -444,27 +397,9 @@ func cariProyek(data *Proyek) {
 			fmt.Println("Pilihan tidak valid, Silahkan pilih sesuai petunjuk")
 
 		}
-
-		// if pilih < 1 || pilih > 3 {
-		// 	fmt.Println("Pilihlah sesuai nomor yang tertera")
-		// }
-
-		// if pilih == 1 {
-		// 	insertionSortByNama(insert)
-		// } else if pilih == 2 {
-		// 	insertionSortByJumInvestor(insert)
-		// } else {
-		// 	selectionSortByJumDana(insert)
-		// }
 	}
 
 }
-
-// func bacaNama(input *string, n int){
-// 	for i:= 0; i < n; i++{
-// 		fmt.Scan(&input)
-// 	}
-// }
 
 func cariProyekByNama(data Proyek) {
 	// I.S. : User memasukkan nama proyek yang ingin dicari
@@ -597,13 +532,6 @@ func ubahDanaInvestor(insert *Proyek) {
 		}
 	}
 
-	// fmt.Print("Sblm sort")
-	// DisplayProjekTercapai(insert)
-	// fmt.Println()
-	// insertionSortByNama(insert)
-	// fmt.Print("Stlh sort")
-	// DisplayProjekTercapai(insert)
-
 	ditemukan = false
 	idx = 0
 
@@ -641,15 +569,7 @@ func tambahDanaInvestor(insert *Proyek) {
 	if jumlah == 0 {
 		fmt.Println("Maaf, Belum ada Proyek yang Tersedia")
 	}
-	//sebanyak yang diisi di pemilik proyek
-	// for i := 0; i < jumlah; i++ {
-	// 	fmt.Println("Proyek ", i+1)
-	// 	fmt.Println("Nama Proyek : ", insert[i].namaProyek)
-	// 	fmt.Println("Deskripsi Proyek : ", insert[i].deskripsi)
-	// 	fmt.Println("Target Pendanaan : ", insert[i].targetDana)
-
-	// }
-
+	
 	fmt.Println("Silahkan pilih Proyek keberapa yang ingin Anda investasikan") // nanti di sambung sama print dana invest terus input
 	fmt.Scan(&pilih)
 	if pilih < 1 || pilih > jumlah {
