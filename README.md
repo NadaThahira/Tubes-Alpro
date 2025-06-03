@@ -12,36 +12,81 @@ Menjalankan project
 
 ```bash
 go run tubes.go
+## Fitur Utama
 ```
+### 1. **Login Menu**
+
+Pengguna dapat memilih peran:
+
+* **Pemilik Proyek**
+* **Investor**
+
+### 2. **Pemilik Proyek**
+
+Sebagai pemilik proyek, pengguna dapat:
+
+* Membuat proyek penggalangan dana.
+* Melihat semua proyek dan progresnya berdasarkan:
+
+  * Nama proyek
+  * Jumlah dana terkumpul
+  * Jumlah investor
+* Mengedit atau menghapus proyek.
+* Melihat proyek yang telah mencapai target dana.
+
+### 3. **Investor**
+
+Sebagai investor, pengguna dapat:
+
+* Mencari proyek berdasarkan nama atau kategori.
+* Menambahkan dana ke proyek pilihan.
+* Mengubah nominal dana yang telah diinvestasikan.
+* Melihat progres proyek-proyek yang tersedia.
+
+### 4. **Sorting dan Searching**
+
+Aplikasi menggunakan:
+
+* **Insertion Sort** untuk pengurutan berdasarkan nama dan jumlah investor.
+* **Selection Sort** untuk pengurutan berdasarkan jumlah dana.
+* **Binary Search** untuk pencarian berdasarkan nama.
+* **Sequential Search** untuk pencarian berdasarkan kategori.
+
+## Struktur Data
+
+* Menggunakan array statis `Proyek` berisi maksimal 1000 entri `Penggalangan`.
+* Tipe data `Penggalangan` menyimpan informasi proyek:
+
+  * Nama, deskripsi, kategori
+  * Target dana, dana terkumpul, jumlah investor
+
+## Petunjuk Penggunaan
+
+1. Jalankan aplikasi dengan `go run tubes.go`
+2. Pilih peran: Pemilik Proyek atau Investor
+3. Gunakan menu interaktif untuk menavigasi dan mengelola data proyek
+
+## Catatan Teknis
+
+* Program ini bersifat **terminal-based**, tidak menggunakan database atau penyimpanan file.
+* Beberapa validasi input sederhana telah disediakan untuk menjaga integritas data.
+* Nilai input harus sesuai format (contoh: tanpa spasi untuk deskripsi atau kategori).
+* Program dapat dikembangkan lebih lanjut dengan integrasi database atau GUI.
+
+## Contoh Screenshot Menu (CLI)
+
 ```
-Mode Pengguna
-1. Menu Awal
-Saat dijalankan, aplikasi menampilkan menu:
-=== Login Menu ===
+===========================
+           LOGIN
+---------------------------
+0. Keluar
 1. Pemilik Proyek
 2. Investor
-0. Exit
-Fitur Pemilik Proyek
-Dipilih saat user memilih opsi 1.
+===========================
+Pilih (0/1/2)?
+```
 
-1. Buat Proyek (buatProyek)
-Membuat proyek baru dengan memasukkan:
-Nama proyek
-Deskripsi proyek
-Target dana (minimal 1000)
-Kategori
+## Kontributor
 
-2. Lihat Progress Proyek (progressProyek)
-Menampilkan daftar proyek berdasarkan pilihan:
-Urut berdasarkan nama proyek
-Urut berdasarkan jumlah investor
-Urut berdasarkan jumlah dana yang terkumpul
-
-3. Ubah Proyek (ubahProyek)
-Menampilkan submenu:
-Hapus Proyek (hapusProyek) – hapus proyek berdasarkan nama.
-Edit Proyek (editProyek) – ubah nama, deskripsi, atau target dana proyek.
-
-4. Tampilkan Proyek Tercapai (DisplayProjekTercapai)
-Menampilkan proyek yang telah mencapai atau melebihi target dana. (Implementasi perlu ditambahkan)
-```bash
+* Mahasiswa Proyek Akhir (Semester 2)
+* Bahasa: Go (Golang)
