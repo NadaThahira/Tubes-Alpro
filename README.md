@@ -85,8 +85,3 @@ Aplikasi menggunakan:
 ===========================
 Pilih (0/1/2)?
 ```
-
-## Kontributor
-
-* Mahasiswa Proyek Akhir (Semester 2)
-* Bahasa: Go (Golang)
