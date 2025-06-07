@@ -138,7 +138,7 @@ func buatProyek(insert *Proyek) {
 	}
 	for i := 0; i < n; i++ {
 		if jumlah > NMAX {
-			fmt.Println("Maaf, Proyek telah mencapai maksimum ")
+			fmt.Println("Mohon maaf, Proyek telah mencapai maksimum ")
 		}
 		fmt.Println("Nama Proyek : ")
 		fmt.Scan(&insert[i].namaProyek)
@@ -195,7 +195,6 @@ func progressProyek(insert *Proyek) {
 				if jumlah == 0 {
 					fmt.Println("Mohon maaf untuk saat ini belum ada proyek yang tersedia")
 				} else {
-					fmt.Println(jumlah)
 					insertionSortByNama(insert)
 					DisplayProjek(insert)
 				}
@@ -203,7 +202,6 @@ func progressProyek(insert *Proyek) {
 				if jumlah == 0 {
 					fmt.Println("Mohon maaf untuk saat ini belum ada proyek yang tersedia")
 				} else {
-					fmt.Println(jumlah)
 					selectionSortByJumInvestor(insert)
 					DisplayProjek(insert)
 				}
@@ -211,7 +209,6 @@ func progressProyek(insert *Proyek) {
 				if jumlah == 0 {
 					fmt.Println("Mohon maaf untuk saat ini belum ada proyek yang tersedia")
 				} else {
-					fmt.Println(jumlah)
 					selectionSortByJumDana(insert)
 					DisplayProjek(insert)
 				}
@@ -320,6 +317,7 @@ func insertionSortByNama(insert *Proyek) {
 	// I.S. : Data proyek belum terurut berdasarkan nama
 	// F.S. : Data proyek terurut berdasarkan nama secara ascending
 	var pass, i int
+	var temp Penggalangan
 
 	for pass = 1; pass <= jumlah-1; pass++ {
 		i = pass
@@ -465,17 +463,15 @@ func cariProyek(data *Proyek) {
 func cariProyekByNama(data *Proyek, nama string) {
 	// I.S. : User memasukkan nama proyek yang ingin dicari
 	// F.S. : Menampilkan informasi proyek jika ditemukan, atau notifikasi jika tidak ditemukan
-
-	index := seqSeachNama(*data, nama)
+	var index int
+	index = seqSeachNama(*data, nama)
 	if index != -1 {
-		for i := index; i >= 0 && data[i].namaProyek == nama; i-- {
-			fmt.Println("Proyek ditemukan:")
-			fmt.Println("Nama Proyek : ", data[index].namaProyek)
-			fmt.Println("Deskripsi Proyek : ", data[index].deskripsi)
-			fmt.Println("Target Pendanaan : ", data[index].targetDana)
-			fmt.Println("Dana Terkumpul :", data[i].jumlahDana)
-			fmt.Println("Jumlah Investor   :", data[i].jumlahInvestor)
-		}
+		fmt.Println("Proyek ditemukan:")
+		fmt.Println("Nama Proyek : ", data[index].namaProyek)
+		fmt.Println("Deskripsi Proyek : ", data[index].deskripsi)
+		fmt.Println("Target Pendanaan : ", data[index].targetDana)
+		fmt.Println("Dana Terkumpul :", data[i].jumlahDana)
+		fmt.Println("Jumlah Investor   :", data[i].jumlahInvestor)
 	} else {
 		fmt.Println("Proyek tidak ditemukan.")
 	}
@@ -483,7 +479,8 @@ func cariProyekByNama(data *Proyek, nama string) {
 func seqSeachNama(insert Proyek, kategori string) int {
 	// I.S. : Pencarian belum dilakukan
 	// F.S. : Mengembalikan indeks proyek dengan kategori yang dicari, -1 jika tidak ditemukan
-	for i := 0; i < jumlah; i++ {
+	var i int
+	for i = 0; i < jumlah; i++ {
 		if insert[i].kategori == kategori {
 			return i
 		}
@@ -494,17 +491,15 @@ func seqSeachNama(insert Proyek, kategori string) int {
 func cariProyekByKategori(data *Proyek, kategori string) {
 	// I.S. : User memasukkan kategori yang ingin dicari
 	// F.S. : Menampilkan proyek dengan kategori tersebut jika ditemukan
-
-	index := seqSeachKategori(*data, kategori)
+	var index int
+	index = seqSeachKategori(*data, kategori)
 	if index != -1 {
-		for i := index; i >= 0 && data[i].namaProyek == kategori; i-- {
-			fmt.Println("Proyek ditemukan:")
-			fmt.Println("Nama Proyek : ", data[index].namaProyek)
-			fmt.Println("Deskripsi Proyek : ", data[index].deskripsi)
-			fmt.Println("Target Pendanaan : ", data[index].targetDana)
-			fmt.Println("Dana Terkumpul :", data[index].jumlahDana)
-			fmt.Println("Jumlah Investor   :", data[index].jumlahInvestor)
-		}
+		fmt.Println("Proyek ditemukan:")
+		fmt.Println("Nama Proyek : ", data[index].namaProyek)
+		fmt.Println("Deskripsi Proyek : ", data[index].deskripsi)
+		fmt.Println("Target Pendanaan : ", data[index].targetDana)
+		fmt.Println("Dana Terkumpul :", data[index].jumlahDana)
+		fmt.Println("Jumlah Investor   :", data[index].jumlahInvestor)
 	} else {
 		fmt.Println("Tidak ada proyek dengan nama tersebut.")
 	}
@@ -513,7 +508,8 @@ func cariProyekByKategori(data *Proyek, kategori string) {
 func seqSeachKategori(insert Proyek, kategori string) int {
 	// I.S. : Pencarian belum dilakukan
 	// F.S. : Mengembalikan indeks proyek dengan kategori yang dicari, -1 jika tidak ditemukan
-	for i := 0; i < jumlah; i++ {
+	var i int
+	for i = 0; i < jumlah; i++ {
 		if insert[i].kategori == kategori {
 			return i
 		}
@@ -618,7 +614,7 @@ func tambahDanaInvestor(insert *Proyek) {
 	DisplayProjek(insert)
 
 	if jumlah == 0 {
-		fmt.Println("Maaf, Belum ada Proyek yang Tersedia")
+		fmt.Println("Mohon maaf, Belum ada Proyek yang Tersedia")
 	}
 
 	fmt.Println("Silahkan pilih Proyek keberapa yang ingin Anda investasikan") 
@@ -690,9 +686,12 @@ func DisplayProjek(insert *Proyek) {
 func DisplayProjekTercapai(insert *Proyek) {
 	// I.S. : Dipanggil untuk menampilkan proyek yang mencapai target pendanaan
 	// F.S. : Menampilkan proyek-proyek yang telah mencapai target
+
+	var ditemukan bool
+	var i int
 	
-	ditemukan := false
-	for i := 0; i < jumlah; i++ {
+	ditemukan = false
+	for i = 0; i < jumlah; i++ {
 		if insert[i].jumlahDana >= insert[i].targetDana {
 			if !ditemukan {
 				fmt.Println("------------------------------")
