@@ -481,7 +481,7 @@ func seqSeachNama(insert Proyek, kategori string) int {
 	// F.S. : Mengembalikan indeks proyek dengan kategori yang dicari, -1 jika tidak ditemukan
 	var i int
 	for i = 0; i < jumlah; i++ {
-		if insert[i].kategori == kategori {
+		if insert[i].namaProyek == kategori {
 			return i
 		}
 	}
