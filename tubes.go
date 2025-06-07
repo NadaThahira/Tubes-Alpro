@@ -13,7 +13,6 @@ type Penggalangan struct {
 
 type Proyek [NMAX]Penggalangan
 
-// var insert Proyek
 var jumlah int
 
 func main() {
@@ -50,7 +49,7 @@ func Dashboard() {
 		fmt.Scan(&pilih1)
 	}
 	fmt.Print("Terimakasih telah menggunakan aplikasi ini")
-	fmt.Println() // masih eror
+	fmt.Println()
 }
 
 func menu() {
@@ -89,12 +88,10 @@ func pemilik(data *Proyek) {
 
 	for pilih != 0 {
 		switch pilih {
-		// case 0:
-		// 	Dashboard()
 		case 1:
 			buatProyek(data)
 		case 2:
-			progressProyek(data) //masih eror
+			progressProyek(data)
 		case 3:
 			ubahProyek(data)
 		case 4:
@@ -471,7 +468,6 @@ func cariProyekByNama(data *Proyek, nama string) {
 	// I.S. : User memasukkan nama proyek yang ingin dicari
 	// F.S. : Menampilkan informasi proyek jika ditemukan, atau notifikasi jika tidak ditemukan
 
-	// index := binarySearch(*data, nama)
 	index := seqSeachNama(*data, nama)
 	if index != -1 {
 		for i := index; i >= 0 && data[i].namaProyek == nama; i-- {
@@ -588,14 +584,6 @@ func ubahDanaInvestor(insert *Proyek) {
 
 	fmt.Println("Masukkan nama proyek yang ingin Anda ubah dananya:")
 	fmt.Scan(&namaCari)
-
-	index := seqSeachNama(*insert, namaCari)
-	for index == -1 {
-		fmt.Println("Nama proyek tidak valid, masukan kembali nama proyek yang ingin Anda ubah dananya:")
-		fmt.Scan(&namaCari)
-		index = seqSeachNama(*insert, namaCari)
-
-	}
 	
 	ditemukan = false
 	idx = 0
@@ -635,7 +623,7 @@ func tambahDanaInvestor(insert *Proyek) {
 		fmt.Println("Maaf, Belum ada Proyek yang Tersedia")
 	}
 
-	fmt.Println("Silahkan pilih Proyek keberapa yang ingin Anda investasikan") // nanti di sambung sama print dana invest terus input
+	fmt.Println("Silahkan pilih Proyek keberapa yang ingin Anda investasikan") 
 	fmt.Scan(&pilih)
 	if pilih < 1 || pilih > jumlah {
 		fmt.Println("Pilihlah sesuai nomor yang tertera")
@@ -654,19 +642,19 @@ func tambahDanaInvestor(insert *Proyek) {
 func selectionSortByJumDana(insert *Proyek) {
 	// I.S. : Data proyek belum diurutkan berdasarkan jumlah dana
 	// F.S. : Data proyek terurut secara descending berdasarkan jumlah dana
-	var i, j, idx_min int
+	var i, j, idx_max int
 	var t Penggalangan
 	for i = 1; i <= jumlah-1; i++ {
-		idx_min = i - 1
+		idx_max = i - 1
 		j = i
 		for j < jumlah {
-			if insert[idx_min].jumlahDana < insert[j].jumlahDana {
-				idx_min = j
+			if insert[idx_max].jumlahDana < insert[j].jumlahDana {
+				idx_max = j
 			}
 			j++
 		}
-		t = insert[idx_min]
-		insert[idx_min] = insert[i-1]
+		t = insert[idx_max]
+		insert[idx_max] = insert[i-1]
 		insert[i-1] = t
 	}
 
@@ -704,7 +692,7 @@ func DisplayProjek(insert *Proyek) {
 func DisplayProjekTercapai(insert *Proyek) {
 	// I.S. : Dipanggil untuk menampilkan proyek yang mencapai target pendanaan
 	// F.S. : Menampilkan proyek-proyek yang telah mencapai target
-
+	
 	ditemukan := false
 	for i := 0; i < jumlah; i++ {
 		if insert[i].jumlahDana >= insert[i].targetDana {
