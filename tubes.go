@@ -321,7 +321,7 @@ func insertionSortByNama(insert *Proyek) {
 
 	for pass = 1; pass <= jumlah-1; pass++ {
 		i = pass
-		temp := insert[pass]
+		temp = insert[pass]
 		for i > 0 && temp.namaProyek < insert[i-1].namaProyek {
 			insert[i] = insert[i-1]
 			i = i - 1
@@ -470,8 +470,8 @@ func cariProyekByNama(data *Proyek, nama string) {
 		fmt.Println("Nama Proyek : ", data[index].namaProyek)
 		fmt.Println("Deskripsi Proyek : ", data[index].deskripsi)
 		fmt.Println("Target Pendanaan : ", data[index].targetDana)
-		fmt.Println("Dana Terkumpul :", data[i].jumlahDana)
-		fmt.Println("Jumlah Investor   :", data[i].jumlahInvestor)
+		fmt.Println("Dana Terkumpul :", data[index].jumlahDana)
+		fmt.Println("Jumlah Investor   :", data[index].jumlahInvestor)
 	} else {
 		fmt.Println("Proyek tidak ditemukan.")
 	}
